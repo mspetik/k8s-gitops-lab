@@ -4,7 +4,7 @@ metadata:
   name: nginx-demo
 spec:
   rules:
-  - host: nginx.kube.internal
+  - host: nginx.apps.kube.internal
     http:
       paths:
       - path: /
