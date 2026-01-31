@@ -18,3 +18,27 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
+
+        # Připojení souborů z ConfigMap do kontejneru
+        volumeMounts:
+        - name: html
+          mountPath: /usr/share/nginx/html
+        - name: nginxconf
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+
+      # Definice volumes z ConfigMap
+      volumes:
+      - name: html
+        configMap:
+          name: nginx-demo-config
+          items:
+            - key: index.html
+              path: index.html
+
+      - name: nginxconf
+        configMap:
+          name: nginx-demo-config
+          items:
+            - key: nginx.conf
+              path: nginx.conf
