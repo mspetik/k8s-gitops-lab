@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-demo
+  namespace: demo-nginx
 spec:
   rules:
   - host: nginx.apps.kube.internal
