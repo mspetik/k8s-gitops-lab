@@ -34,6 +34,7 @@ data:
         <h1>Nginx deployed by GitOps</h1>
         <p>This page is served directly from a Kubernetes ConfigMap.</p>
         <p>Any change in Git is automatically deployed by ArgoCD.</p>
+        <p> Funguje to :)</p>
         <p><b>nginx.apps.kube.internal</b></p>
       </div>
     </body>
