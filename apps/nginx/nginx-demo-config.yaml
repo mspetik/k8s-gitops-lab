@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-demo-config
+  namespace: demo-nginx
+data:
+
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Nginx GitOps Demo</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: #0f172a;
+          color: #e2e8f0;
+          text-align: center;
+          padding: 40px;
+        }
+        .card {
+          background: #1e293b;
+          padding: 30px;
+          border-radius: 12px;
+          max-width: 900px;
+          margin: auto;
+        }
+        h1 { color: #38bdf8; }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <h1>Nginx deployed by GitOps</h1>
+        <p>This page is served directly from a Kubernetes ConfigMap.</p>
+        <p>Any change in Git is automatically deployed by ArgoCD.</p>
+        <p><b>nginx.apps.kube.internal</b></p>
+      </div>
+    </body>
+    </html>
+
+  nginx.conf: |
+    events {}
+    http {
+      server {
+        listen 80;
+        server_name nginx.apps.kube.internal;
+
+        location / {
+          root /usr/share/nginx/html;
+          index index.html;
+        }
+      }
+    }
